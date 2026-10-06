@@ -8,7 +8,7 @@
 2. **Build → Firestore Database → Datenbank erstellen** (Produktionsmodus, Region `eur3`/`europe-west`).
 3. **Build → Authentication → Anmeldemethode → E-Mail/Passwort** aktivieren, dann unter **Users** deinen Admin-Nutzer anlegen.
 4. **Projekteinstellungen → Allgemein → Deine Apps → Web (`</>`)** → App registrieren, die `firebaseConfig` in `public/firebase-config.js` einfügen.
-5. In `firestore.rules` die Admin-E-Mail eintragen (`DEINE-ADMIN-MAIL@example.com`).
+5. In `firestore.rules` die Admin-E-Mail eintragen (`jannik.huenniger@gmail.com`).
 6. Deployen:
    ```
    npm i -g firebase-tools

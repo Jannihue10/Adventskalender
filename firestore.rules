@@ -5,7 +5,7 @@ service cloud.firestore {
     // >>> HIER die Admin-E-Mail eintragen (muss exakt dem Firebase-Auth-Nutzer entsprechen) <<<
     function isAdmin() {
       return request.auth != null
-          && request.auth.token.email == 'DEINE-ADMIN-MAIL@example.com';
+          && request.auth.token.email == 'jannik.huenniger@gmail.com';
     }
 
     match /config/{doc} {
