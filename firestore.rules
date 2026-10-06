@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // >>> HIER die Admin-E-Mail eintragen (muss exakt dem Firebase-Auth-Nutzer entsprechen) <<<
+    function isAdmin() {
+      return request.auth != null
+          && request.auth.token.email == 'DEINE-ADMIN-MAIL@example.com';
+    }
+
+    match /config/{doc} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /doors/{door} {
+      function cfg() {
+        return get(/databases/$(database)/documents/config/wheel).data;
+      }
+      function n() { return int(door); }
+
+      allow read: if true;
+
+      // Nur einmal pro Tür anlegen, nie ändern. Datum wird serverseitig geprüft
+      // (+1h Toleranz wegen MEZ gegenüber UTC). Tür 24 muss den festgelegten Namen enthalten.
+      allow create: if door.matches('^([1-9]|1[0-9]|2[0-4])$')
+          && request.resource.data.keys().hasOnly(['result', 'openedAt'])
+          && request.resource.data.result is string
+          && request.resource.data.openedAt == request.time
+          && (cfg().testMode == true
+              || request.time + duration.value(1, 'h') >= timestamp.date(int(cfg().year), 12, n()))
+          && (n() != 24 || request.resource.data.result == cfg().day24Name);
+
+      allow update, delete: if isAdmin();
+    }
+  }
+}
