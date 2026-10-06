@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Admin – Adventskalender</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Admin</h1>
+  <div class="panel" id="login">
+    <section>
+      <h2>Anmelden</h2>
+      <div class="row"><input class="name" id="email" type="email" placeholder="E-Mail" autocomplete="username"></div>
+      <div class="row"><input class="name" id="pw" type="password" placeholder="Passwort" autocomplete="current-password"></div>
+      <button class="btn" id="loginBtn">Anmelden</button>
+      <div class="status" id="loginStatus"></div>
+    </section>
+  </div>
+
+  <div class="panel" id="editor" style="display:none">
+    <section>
+      <h2>Namen &amp; Gewichte</h2>
+      <p style="opacity:.8;margin-top:0">Höheres Gewicht = höhere Wahrscheinlichkeit. Das Rad zeigt alle Namen gleich groß.</p>
+      <div id="rows"></div>
+      <button class="btn sec" id="addBtn">+ Name hinzufügen</button>
+    </section>
+    <section>
+      <h2>Tür 24</h2>
+      <p style="opacity:.8;margin-top:0">Dieser Name wird an Tür 24 garantiert gezogen.</p>
+      <select id="day24"></select>
+    </section>
+    <section>
+      <h2>Einstellungen</h2>
+      <div class="row"><label for="year">Kalenderjahr</label><input id="year" type="number" min="2020" max="2100" style="width:100px"></div>
+      <label class="chk"><input type="checkbox" id="testMode"> Testmodus (alle Türen jederzeit öffnbar)</label>
+    </section>
+    <button class="btn" id="saveBtn">Speichern</button>
+    <button class="btn sec" id="logoutBtn">Abmelden</button>
+    <div class="status" id="status"></div>
+
+    <section style="margin-top:20px">
+      <h2>Türen zurücksetzen</h2>
+      <div id="doorState" style="margin-bottom:8px;opacity:.8"></div>
+      <div class="row"><input id="resetNum" type="number" min="1" max="24" placeholder="Tür" style="width:90px">
+        <button class="btn danger" id="resetOne">Diese Tür zurücksetzen</button></div>
+      <button class="btn danger" id="resetAll">Alle Türen zurücksetzen</button>
+    </section>
+  </div>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

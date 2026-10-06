@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adventskalender</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🎄 Adventskalender 🎄</h1>
+  <p class="sub" id="sub">Lädt …</p>
+  <div class="grid" id="grid"></div>
+
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <h2 id="modalTitle"></h2>
+      <div class="wheel-wrap"><div class="pointer"></div><canvas id="wheel" width="760" height="760"></canvas></div>
+      <div class="result" id="result"></div>
+      <button class="btn" id="spinBtn">Drehen!</button>
+      <button class="btn sec" id="closeBtn">Schließen</button>
+    </div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
